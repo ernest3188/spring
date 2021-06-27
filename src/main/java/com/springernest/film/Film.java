@@ -16,4 +16,8 @@ public class Film {
     public Integer getDurationInMins() {
         return durationInMins;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
