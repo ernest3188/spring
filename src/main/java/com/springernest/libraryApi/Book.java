@@ -1,14 +1,12 @@
 package com.springernest.libraryApi;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 
 public class Book {
     private int id; //- unikalny identyfikator ksiazki
