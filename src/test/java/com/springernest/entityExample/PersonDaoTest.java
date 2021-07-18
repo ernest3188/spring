@@ -1,5 +1,6 @@
 package com.springernest.entityExample;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,18 @@ class PersonDaoTest {
 
     @Autowired
     PersonDao personDao;
+    private List<Person> list;
+
+    @BeforeEach
+    void setUp() {
+        list = Arrays.asList(
+                new Person("Michal", "Chmielewski", 13, LocalDateTime.now()),
+                new Person("Jakub", "Kowalski", 25, LocalDateTime.now()),
+                new Person("Adam", "Kowalski", 20, LocalDateTime.now()),
+                new Person("Ewa", "Kowalska", 15, LocalDateTime.now()),
+                new Person("Ernest", "Smoliński", 32, LocalDateTime.now())
+        );
+    }
 
     @Test
     void shouldAddPerson() {
@@ -36,17 +49,12 @@ class PersonDaoTest {
     @Test
     void shouldRetrievePersonByLastname() {
         //given
-        Person person = new Person("Michal", "Chmielewski", null, LocalDateTime.now());
-        List<Person> list = Arrays.asList(
-                new Person("Michal", "Chmielewski", 13, LocalDateTime.now()),
-                new Person("Jakub", "Kowalski", 25, LocalDateTime.now()),
-                new Person("Adam", "Kowalski", 20, LocalDateTime.now()),
-                new Person("Ewa", "Kowalska", 15, LocalDateTime.now())
-        );
+       // Person person = new Person("Michal", "Chmielewski", null, LocalDateTime.now());
+
         this.personDao.saveAll(list);
 
         //when
-        this.personDao.save(person);
+
         List<Person> result = this.personDao.findBySurname("Kowalski");
         //cleanUp
         this.personDao.deleteAll(list);
